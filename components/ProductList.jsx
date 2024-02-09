@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Product from "./Product";
 export default function ProductList({ products }) {
+
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
