@@ -16,12 +16,19 @@ name: "cart",
 initialState,
 reducers:{
     addToCart:(state,action)=>{
-        const {id,title,image,price} = action.payload
-        state.push({id, title,image,price,qty:1})
+        const {id,title,image,price} = action.payload;
+        const existingItem = state.find((item)=>item.id===id);
+        if(existingItem){
+            existingItem.qty +=1;
+        }else{
+
+            state.push({id, title,image,price,qty:1})
+        }
         console.log(action);
     },
     removeFromCart:(state,action)=>{
-
+        const cartId = action.payload;
+        return state.filter((item)=>item.id !== cartId)
     },
     incrementQty:(state,action)=>{
 
