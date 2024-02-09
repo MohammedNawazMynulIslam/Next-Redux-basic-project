@@ -1,4 +1,4 @@
-import { removeFromCart } from "@/redux/slices/cartSlice";
+import { decrementQty, incrementQty, removeFromCart } from "@/redux/slices/cartSlice";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import React from "react";
@@ -11,6 +11,14 @@ export const CartProduct = ({cartItem}) => {
     const handleDelete = (cartId) =>{
       dispatch(removeFromCart(cartId))
       toast.success("item remove successful")
+    }
+    const handleIQtyIncrement = (cartId) =>{
+      dispatch(incrementQty(cartId))
+
+    }
+    const handleQtyDecrement = (cartId) =>{
+      dispatch(decrementQty(cartId))
+
     }
   return (
     <div className="flex items-center justify-between border-b border-slate-400  pb-3 font-semibold text-sm mb-4">
@@ -28,11 +36,11 @@ export const CartProduct = ({cartItem}) => {
         </div>
       </div>
       <div className=" rounded-xl border border-gray-400 flex gap-3 items-center ">
-        <button className="border-r border-gray-400 py-2 px-4">
+        <button onClick={()=>handleQtyDecrement(cartItem.id)} className="border-r border-gray-400 py-2 px-4">
           <Minus />
         </button>
-        <p className="flex-grow py-2 px-4">1</p>
-        <button className="border-l border-gray-400 py-2 px-4">
+        <p className="flex-grow py-2 px-4">{cartItem.qty}</p>
+        <button onClick={()=>handleIQtyIncrement(cartItem.id)} className="border-l border-gray-400 py-2 px-4">
           <Plus />
         </button>
       </div>

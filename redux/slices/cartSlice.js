@@ -31,9 +31,18 @@ reducers:{
         return state.filter((item)=>item.id !== cartId)
     },
     incrementQty:(state,action)=>{
-
+        const cartId= action.payload;
+        const existingItem = state.find((item)=>item.id === cartId)
+        if(existingItem){
+            existingItem.qty +=1
+        }
     },
     decrementQty:(state,action)=>{
+        const cartId = action.payload
+        const existingItem = state.find((item)=>item.id===cartId)
+        if(existingItem && existingItem.qty>1){
+            existingItem.qty -=1
+        }
 
     }
 }

@@ -25,11 +25,17 @@ const Subtotal = cartItems.reduce((acc,currentItem)=>{
             <h2 className="uppercase">Price</h2>
           </div>
           <div className="">
-            {
-              cartItems.map((item,i)=>{
+
+
+              {
+              cartItems.length>0 ?
+              (
+               cartItems.map((item,i)=>{
                 return<CartProduct cartItem={item} key={i}></CartProduct>
               })
-            }
+              ) : (
+                <p>No Cart items</p>
+              )}
 
           </div>
           {/* COUPON FORM */}
